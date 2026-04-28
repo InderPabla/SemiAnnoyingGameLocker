@@ -1,0 +1,220 @@
+1. What is 12 * 8?
+96
+2. What is the capital of France?
+paris
+3. How many sides does a hexagon have?
+6
+4. What is the square root of 144?
+12
+5. What planet is closest to the Sun?
+mercury
+6. What is 7 * 7?
+49
+7. How many minutes are in an hour?
+60
+8. What is the opposite of north?
+south
+9. What is 100 divided by 4?
+25
+10. How many days are in a leap year?
+366
+11. Solve for x: x^2 - 5x + 6 = 0
+2,3
+12. Solve the system: 2x + 3y = 13 and x - y = 1
+16/5,11/5
+13. Evaluate log base 2 of 32.
+5
+14. Solve for x: 3^x = 81
+4
+15. If f(x)=2x+1, what is f^{-1}(5)?
+2
+16. Solve x^2 - 4x - 12 = 0
+6,-2
+17. What is sqrt(0.04)?
+0.2
+18. Solve |2x - 3| = 7
+5,-2
+19. Slope of the line through (2,3) and (5,11)?
+8/3
+20. Sum of interior angles of a pentagon (degrees)?
+540
+21. Area of a circle with radius 3 (use pi)
+9pi
+22. Simplify x^3 * x^4
+x^7
+23. In an arithmetic sequence a1=3, d=4, what is a10?
+39
+24. Convert 45 degrees to radians.
+pi/4
+25. Solve 4x - 7 = 2(x + 3)
+13/2
+26. Probability of exactly two heads in three fair coin flips?
+3/8
+27. Area of a 3-4-5 right triangle?
+6
+28. Simplify (x^2 - 1)/(x - 1)
+x + 1
+29. Solve ln(e^{3x}) = 12
+4
+30. Vertex of y = x^2 - 4x + 3
+2,-1
+31. Solve: 5x + 2y = 20 and x - y = 2
+24/7,10/7
+32. Simplify (1/2)^{-3}
+8
+33. Area of triangle with base 10 and height 6
+30
+34. Solve for x: 30% of x = 36
+120
+35. If circumference = 12pi, what is the radius?
+6
+36. Solve x^2 + x - 6 = 0
+2,-3
+37. Mean of 2,4,6,8,10
+6
+38. Median of 3,7,9,10,12
+9
+39. Solve 2/x = 1/3
+6
+40. Simplify (3^4)/(3^2)
+9
+41. Solve 7x - 5 = 2x + 20
+5
+42. Simplify sqrt(50)
+5sqrt2
+43. Convert 7/8 to decimal
+0.875
+44. What is 0! ?
+1
+45. Given x=2 and y=1, solve x + y + z = 6
+3
+46. Area of rectangle length 7 width 4
+28
+47. Perimeter of a square with side 5
+20
+48. If arithmetic mean of four numbers is 10, what is their sum?
+40
+49. Solve x^2 + 4x + 4 = 0
+-2
+50. Solve for x: (x + 1)/(x - 1) = 3
+2
+51. Simplify log_10(1000)
+3
+52. Solve for x: 2x^2 - 8x = 0
+0,4
+53. If tan(theta)=1, theta in degrees (principal)
+45
+54. If a sequence is geometric with a1=8 and r=1/2, what is a4?
+1
+55. Simplify (x^2 - 9)/(x - 3)
+x + 3
+56. If a right triangle has legs 5 and 12, what is the hypotenuse?
+13
+57. Evaluate 2^5 * 2^{-2}
+8
+58. Find x: 1/(x+1) + 1/(x+2) = 1/2
+1
+59. If the mean of numbers is 15 and there are three numbers summing to 45, what is the mean?
+15
+60. Solve x^2 - 2x - 15 = 0
+5,-3
+61. What is the largest continent?
+asia
+62. Which planet has prominent rings?
+saturn
+63. What gas do plants absorb for photosynthesis (one token)?
+co2
+64. Capital of japan?
+tokyo
+65. Who wrote "hamlet"?
+shakespeare
+66. Largest ocean?
+pacific
+67. Currency of the united kingdom?
+pound
+68. Process by which plants make food?
+photosynthesis
+69. Primary language of brazil?
+portuguese
+70. Chemical symbol for gold?
+au
+71. First president of the united states?
+washington
+72. Country famous for samba?
+brazil
+73. Highest mountain on Earth?
+everest
+74. Author of "1984"?
+orwell
+75. Element with atomic number 1?
+hydrogen
+76. Largest hot desert?
+sahara
+77. New york city is often abbreviated as?
+nyc
+78. Color mixed with yellow to make green?
+blue
+79. Who discovered penicillin?
+fleming
+80. Smallest independent state by area?
+vatican
+81. Metal commonly used for electrical wiring?
+copper
+82. Largest country by area?
+russia
+83. Who painted the Mona Lisa?
+davinci
+84. Study of the mind?
+psychology
+85. Organ that pumps blood?
+heart
+86. Planet known as the red planet?
+mars
+87. Unit of electrical resistance?
+ohm
+88. Main gas in Earth's atmosphere?
+nitrogen
+89. Powerhouse of the cell?
+mitochondria
+90. Year world war ii ended?
+1945
+91. Civil rights leader known for "I have a dream"?
+king
+92. First person to walk on the moon?
+armstrong
+93. Capital of egypt?
+cairo
+94. Largest animal on Earth?
+bluewhale
+95. Which continent is kenya in?
+africa
+96. Primary element fueling the sun?
+hydrogen
+97. River running through london?
+thames
+98. Famous long wall in china?
+greatwall
+99. Element that is liquid at room temperature?
+mercury
+100. Hardest natural mineral?
+diamond
+101. Capital of italy?
+rome
+102. Largest moon of jupiter?
+ganymede
+103. Study of living organisms?
+biology
+104. Chemical formula for water?
+h2o
+105. Capital of canada?
+ottawa
+106. Composer of the Ninth Symphony?
+beethoven
+107. Longest river in africa?
+nile
+108. Largest volcano in the solar system?
+olympusmons
+109. Musical instrument with six strings?
+guitar
+110. Famous ship that sank in 1912?
+titanic

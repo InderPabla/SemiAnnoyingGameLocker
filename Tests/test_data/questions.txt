@@ -1,0 +1,14 @@
+1. What is 2 + 2?
+4
+
+2. What color is the sky?
+blue
+
+3. How many days in a week?
+7
+
+4. What is the capital of France?
+paris
+
+5. What is 10 * 10?
+100

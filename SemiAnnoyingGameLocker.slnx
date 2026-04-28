@@ -1,0 +1,8 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="SemiAnnoyingGameLocker.vcxproj" Id="66205fc7-825f-4476-b068-914e1d4e6483" />
+  <Project Path="Tests\Tests.vcxproj" Id="a1b2c3d4-e5f6-7890-abcd-ef1234567890" />
+</Solution>
