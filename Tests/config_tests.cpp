@@ -1,5 +1,16 @@
 #include <gtest/gtest.h>
 #include "../config.h"
+#include <set>
+#include <sstream>
+#include <vector>
+
+static std::vector<std::string> split(const std::string& s, char delim) {
+    std::vector<std::string> out;
+    std::stringstream ss(s);
+    std::string part;
+    while (std::getline(ss, part, delim)) out.push_back(part);
+    return out;
+}
 
 // ---- formatDisplay --------------------------------------------------------
 
@@ -20,13 +31,21 @@ TEST(Config_FormatDisplay, Noon) {
 
 TEST(Config_FormatSchtasks, CorrectDateAndTime) {
     auto [date, time] = Config::formatSchtasks("2026-05-02T13:30:00");
-    EXPECT_EQ(date, "05/02/2026");
     EXPECT_EQ(time, "13:30");
+    auto parts = split(date, '/');
+    ASSERT_EQ(parts.size(), 3u);
+    std::set<std::string> expected{"2026", "05", "02"};
+    std::set<std::string> actual{parts[0], parts[1], parts[2]};
+    EXPECT_EQ(actual, expected);
 }
 TEST(Config_FormatSchtasks, PadsMonthAndDay) {
     auto [date, time] = Config::formatSchtasks("2026-01-05T09:05:00");
-    EXPECT_EQ(date, "01/05/2026");
     EXPECT_EQ(time, "09:05");
+    auto parts = split(date, '/');
+    ASSERT_EQ(parts.size(), 3u);
+    std::set<std::string> expected{"2026", "01", "05"};
+    std::set<std::string> actual{parts[0], parts[1], parts[2]};
+    EXPECT_EQ(actual, expected);
 }
 
 // ---- secondsUntil ---------------------------------------------------------

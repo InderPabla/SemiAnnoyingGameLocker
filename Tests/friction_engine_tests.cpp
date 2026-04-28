@@ -13,6 +13,20 @@ static std::string writeTempTrivia(const std::string& content) {
     return path;
 }
 
+static std::string resolveTestDataPath(const std::string& filename) {
+    const fs::path candidates[] = {
+        fs::path("test_data") / filename,
+        fs::path("Tests") / "test_data" / filename,
+        fs::path(__FILE__).parent_path() / "test_data" / filename
+    };
+
+    for (const auto& p : candidates) {
+        if (fs::exists(p)) return p.string();
+    }
+
+    throw std::runtime_error("Unable to locate test data file: " + filename);
+}
+
 // ---- loadTrivia -----------------------------------------------------------
 
 TEST(FrictionEngine_LoadTrivia, ParsesNumberedQuestions) {
@@ -78,7 +92,7 @@ TEST(FrictionEngine_LoadTrivia, ThrowsOnMissingFile) {
 
 TEST(FrictionEngine_LoadTrivia, ReadsFromTestDataFile) {
     // Verifies the checked-in test_data/questions.txt is parseable and has 5 questions.
-    std::string path = "test_data\\questions.txt";
+    std::string path = resolveTestDataPath("questions.txt");
     auto questions = FrictionEngine::loadTrivia(path);
     EXPECT_EQ(questions.size(), 5u);
     EXPECT_EQ(questions[0].question, "What is 2 + 2?");

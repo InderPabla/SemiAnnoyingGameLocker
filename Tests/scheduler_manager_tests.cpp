@@ -25,19 +25,23 @@ TEST(SchedulerManager_CreateTask, SendsCorrectSchtasksCommand) {
     EXPECT_NE(cmd.find("schtasks /Create"),       std::string::npos);
     EXPECT_NE(cmd.find("SAGL_Unlock_20260427-Squad"), std::string::npos);
     EXPECT_NE(cmd.find("unlock --id 20260427-Squad --scheduled"), std::string::npos);
+    EXPECT_NE(cmd.find("'C:\\Tools\\sagl.exe'"),  std::string::npos);
     EXPECT_NE(cmd.find("/SC ONCE"),               std::string::npos);
     EXPECT_NE(cmd.find("05/02/2026"),             std::string::npos);
     EXPECT_NE(cmd.find("13:30"),                  std::string::npos);
     EXPECT_NE(cmd.find("/RL HIGHEST"),            std::string::npos);
-    EXPECT_NE(cmd.find("/Z"),                     std::string::npos);  // self-deletes after run
+    EXPECT_EQ(cmd.find("/Z"),                     std::string::npos);  // omitted for compatibility
 }
 
 TEST(SchedulerManager_CreateTask, ReturnsEmptyOnFailure) {
     FakeShell shell;
     shell.executeReturnCode = 1;
+    shell.captureResponses["schtasks /Create"] = "ERROR: sample failure";
     SchedulerManager sched(shell);
 
     EXPECT_TRUE(sched.createTask("lock1","C:\\sagl.exe","","01/01/2026","12:00").empty());
+    ASSERT_EQ(shell.captured.size(), 1u);
+    EXPECT_NE(shell.captured[0].find("2>&1"), std::string::npos);
 }
 
 // ---- deleteTask -----------------------------------------------------------

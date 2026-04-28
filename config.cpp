@@ -97,6 +97,41 @@ static std::string toLower(const std::string& s) {
     return r;
 }
 
+static std::string localeShortDatePattern() {
+    wchar_t wbuf[128]{};
+    int n = GetLocaleInfoEx(LOCALE_NAME_USER_DEFAULT, LOCALE_SSHORTDATE, wbuf, 128);
+    if (n <= 1) return "M/d/yyyy";
+
+    int needed = WideCharToMultiByte(CP_UTF8, 0, wbuf, n - 1, nullptr, 0, nullptr, nullptr);
+    if (needed <= 0) return "M/d/yyyy";
+
+    std::string out(static_cast<size_t>(needed), '\0');
+    WideCharToMultiByte(CP_UTF8, 0, wbuf, n - 1, out.data(), needed, nullptr, nullptr);
+    return out;
+}
+
+static std::string schtasksDateFromIso(const SYSTEMTIME& st) {
+    const std::string pat = localeShortDatePattern();
+
+    const size_t y = pat.find_first_of("yY");
+    const size_t m = pat.find_first_of("mM");
+    const size_t d = pat.find_first_of("dD");
+
+    std::ostringstream date;
+    date << std::setfill('0');
+
+    // schtasks accepts locale-dependent order; separators can safely be '/'.
+    if (y != std::string::npos && y < m && y < d) {
+        date << st.wYear << "/" << std::setw(2) << st.wMonth << "/" << std::setw(2) << st.wDay;
+    } else if (d != std::string::npos && d < m) {
+        date << std::setw(2) << st.wDay << "/" << std::setw(2) << st.wMonth << "/" << st.wYear;
+    } else {
+        date << std::setw(2) << st.wMonth << "/" << std::setw(2) << st.wDay << "/" << st.wYear;
+    }
+
+    return date.str();
+}
+
 // ---- Public API -----------------------------------------------------------
 
 std::string Config::dataDir() {
@@ -205,12 +240,10 @@ std::string Config::formatDisplay(const std::string& iso) {
 
 std::pair<std::string, std::string> Config::formatSchtasks(const std::string& iso) {
     SYSTEMTIME st = parseIso(iso);
-    std::ostringstream date, time;
-    date << std::setfill('0') << std::setw(2) << st.wMonth << "/"
-         << std::setw(2) << st.wDay   << "/" << st.wYear;
+    std::ostringstream time;
     time << std::setfill('0') << std::setw(2) << st.wHour  << ":"
          << std::setw(2) << st.wMinute;
-    return {date.str(), time.str()};
+    return {schtasksDateFromIso(st), time.str()};
 }
 
 std::string Config::generateLockId(const std::vector<std::string>& games) {

@@ -4,6 +4,16 @@
 #include <windows.h>
 #include <sstream>
 #include <algorithm>
+#include <cctype>
+
+static std::string trim(std::string s) {
+    while (!s.empty() && std::isspace(static_cast<unsigned char>(s.back())))
+        s.pop_back();
+    size_t i = 0;
+    while (i < s.size() && std::isspace(static_cast<unsigned char>(s[i])))
+        ++i;
+    return s.substr(i);
+}
 
 SchedulerManager::SchedulerManager(IShell& shell) : shell_(shell) {}
 
@@ -29,7 +39,7 @@ std::string SchedulerManager::createTask(const std::string& lockId,
                                           const std::string& schedDate,
                                           const std::string& schedTime) {
     std::string name = taskName(lockId);
-    std::string run  = "\"" + exePath + "\" unlock --id " + lockId + " --scheduled";
+    std::string run  = "'" + exePath + "' unlock --id " + lockId + " --scheduled";
 
     std::ostringstream cmd;
     cmd << "schtasks /Create"
@@ -37,10 +47,14 @@ std::string SchedulerManager::createTask(const std::string& lockId,
         << " /TR \""  << run       << "\""
         << " /SC ONCE /SD " << schedDate
         << " /ST "          << schedTime
-        << " /RL HIGHEST /Z /F >nul 2>&1";
+        << " /RL HIGHEST /F";
 
     if (shell_.execute(cmd.str()) != 0) {
-        Logger::error("Failed to create scheduled task: " + name);
+        std::string detail = trim(shell_.capture(cmd.str() + " 2>&1"));
+        if (!detail.empty())
+            Logger::error("Failed to create scheduled task: " + name + " | " + detail);
+        else
+            Logger::error("Failed to create scheduled task: " + name);
         return {};
     }
     Logger::log("TASK CREATED " + name + " at " + unlockAtIso);

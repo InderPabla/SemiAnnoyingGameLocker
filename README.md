@@ -182,7 +182,7 @@ SemiAnnoyingGameLocker/
 |                                 Used for password hashing and firewall rule naming
 |-- firewall_manager.h           netsh advfirewall - add/delete/list outbound block rules
 |                                 Rule name format: SAGL::<lockId>::<exeHash>
-|-- scheduler_manager.h          schtasks - one-shot task with /Z (self-deletes after firing)
+|-- scheduler_manager.h          schtasks - one-shot task at unlock datetime
 |                                 Task name format: SAGL_Unlock_<lockId>
 |
 |-- steam_resolver.h             Reads libraryfolders.vdf + appmanifest_*.acf
@@ -205,7 +205,7 @@ SemiAnnoyingGameLocker/
 
 **One rule, one exe.** Rule names embed a short SHA-256 of the exe path (`SAGL::20260427-Squad::a91f3b`) so multiple games in one lock each get their own rule, collisions are essentially impossible, and cleanup is unambiguous.
 
-**Auto-unlock via Task Scheduler.** The scheduled task uses `/SC ONCE /Z /RL HIGHEST` - runs once at the unlock datetime, removes itself after, and runs with highest privileges so it can delete the firewall rules.
+**Auto-unlock via Task Scheduler.** The scheduled task uses `/SC ONCE /RL HIGHEST` - runs once at the unlock datetime with highest privileges so it can delete the firewall rules.
 
 **Passwords hash with Windows BCrypt.** The CNG SHA-256 implementation is FIPS-validated and hardware-accelerated. The hash is stored in the lock config JSON; plaintext is never persisted.
 
